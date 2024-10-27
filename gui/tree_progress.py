@@ -15,8 +15,12 @@ class TreeProgressWidget(QWidget):
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         
         self.update_timer = QTimer(self)
-        self.update_timer.timeout.connect(self.updatePosition)
+        self.update_timer.timeout.connect(self.full_update)
         self.update_timer.start(50)
+    
+    def full_update(self):
+        QMetaObject.invokeMethod(self, "update", Qt.QueuedConnection)
+        self.updatePosition()
     
     def updatePosition(self):
         if mw and mw.reviewer and mw.reviewer.bottom:
@@ -34,7 +38,7 @@ class TreeProgressWidget(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         
-        self.forest_tracker = ForestTracker()
+        self.forest_tracker.reload_config() # Refresh for latest tree progress
         current_tree = self.forest_tracker.config["current_tree"]
         progress = current_tree["progress"]
         tree_type = current_tree["type"]

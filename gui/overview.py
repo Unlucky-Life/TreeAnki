@@ -13,7 +13,7 @@ class ForestOverviewWindow(QMainWindow):
         self.setup_ui()
         
     def setup_ui(self):
-        self.setMinimumSize(800, 600)
+        self.setMinimumSize(650, 500)
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         
@@ -46,20 +46,20 @@ class ForestOverviewWindow(QMainWindow):
         tree_controls.addWidget(current_tree_label)
         self.current_tree_widget = TreeProgressWidget()
         self.current_tree_widget.setFixedSize(100, 150)
-        self.current_tree_widget.update()
-        tree_controls.addWidget(self.current_tree_widget)
-        
+        tree_controls.addWidget(self.current_tree_widget) 
         tree_controls.addStretch()
         layout.addLayout(tree_controls)
         
         # Forest display
         forest_scroll = QScrollArea()
         forest_scroll.setWidgetResizable(True)
-        forest_scroll.setMinimumHeight(400)
+        forest_scroll.setMinimumHeight(200)
         
         self.forest_display = ForestDisplayWidget()
         forest_scroll.setWidget(self.forest_display)
         layout.addWidget(forest_scroll)
+        
+        self.setLayout(layout)
     
     def show_tree_selection(self):
         dialog = TreeSelectionDialog(self)

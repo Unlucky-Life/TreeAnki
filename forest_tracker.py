@@ -42,3 +42,6 @@ class ForestTracker:
         if tree_type in TREE_TYPES:
             self.config["current_tree"]["type"] = tree_type
             self.save_config(self.config)
+            
+    def reload_config(self):
+        self.config = self.load_config()
