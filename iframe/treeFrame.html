@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tree Growth Stage</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+    @import url('../iframe/style/style.css');
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img id="tree-container" class="tree-stage" alt="Tree Growth Stage">
+    <div class="progress-container">
+      <div id="progress-bar" class="progress-bar"></div>
+    </div>
+    <div id="progress-text" class="progress-text"></div>
+  </div>
+
+  <script>
+    function getQueryParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // Get parameters from URL
+    const treeType = parseInt(getQueryParameter("treeType")) || 1;
+    const stage = Math.min(Math.max(parseInt(getQueryParameter("stage")), 1), 5) || 1;
+    const current = parseInt(getQueryParameter("current")) || 0;
+    const max = parseInt(getQueryParameter("max")) || 100;
+
+    // Set image source based on parameters
+    const treeContainer = document.getElementById("tree-container");
+    treeContainer.src = `iframe/trees/tree${treeType}-${stage}.png`;
+
+    // Calculate progress percentage
+    const progressPercent = Math.min((current / max) * 100, 100);
+
+    // Set progress bar width
+    const progressBar = document.getElementById("progress-bar");
+    progressBar.style.width = `${progressPercent}%`;
+
+    // Set progress text
+    const progressText = document.getElementById("progress-text");
+    progressText.textContent = `${current}/${max}`;
+  </script>
+</body>
+</html>
