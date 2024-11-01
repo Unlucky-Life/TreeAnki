@@ -25,7 +25,7 @@
     }
 
     // Get parameters from URL
-    const source_url = getQueryParameter("general_url")
+    const source_url = getQueryParameter("general_url");
     const treeType = parseInt(getQueryParameter("treeType")) || 1;
     const stage = Math.min(Math.max(parseInt(getQueryParameter("stage")), 1), 5) || 1;
     const current = parseInt(getQueryParameter("current")) || 0;
@@ -34,6 +34,21 @@
     // Set image source based on parameters
     const treeContainer = document.getElementById("tree-container");
     treeContainer.src = `../iframe/trees/tree${treeType}-${stage}.png`;
+
+    // Initialize click counter
+    let clickCount = 0;
+
+    // Add click event listener
+    treeContainer.addEventListener('click', function() {
+      clickCount++;
+
+      // Open the browser window after 3 clicks
+      if (clickCount === 3) {
+        window.open('https://growmytree.com/', '_blank');
+        // Optionally, reset the counter or perform any additional actions
+        clickCount = 0; // Reset counter if you want to allow further clicks
+      }
+    });
 
     // Calculate progress percentage
     const progressPercent = Math.min((current / max) * 100, 100);
