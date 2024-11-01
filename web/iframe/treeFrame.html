@@ -6,7 +6,7 @@
   <title>Tree Growth Stage</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
-    @import url('../iframe/style/style.css');
+    @import url('../iframe/styling/style.css');
   </style>
 </head>
 <body>
@@ -25,6 +25,7 @@
     }
 
     // Get parameters from URL
+    const source_url = getQueryParameter("general_url")
     const treeType = parseInt(getQueryParameter("treeType")) || 1;
     const stage = Math.min(Math.max(parseInt(getQueryParameter("stage")), 1), 5) || 1;
     const current = parseInt(getQueryParameter("current")) || 0;
@@ -32,7 +33,7 @@
 
     // Set image source based on parameters
     const treeContainer = document.getElementById("tree-container");
-    treeContainer.src = `iframe/trees/tree${treeType}-${stage}.png`;
+    treeContainer.src = `../iframe/trees/tree${treeType}-${stage}.png`;
 
     // Calculate progress percentage
     const progressPercent = Math.min((current / max) * 100, 100);

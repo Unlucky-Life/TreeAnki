@@ -1,5 +1,13 @@
+from aqt import mw
+from pathlib import Path
+
 REVIEWS_FOR_SMALL_TREE = 500
 REVIEWS_FOR_FULL_TREE = 1000
+
+ADDON_NAME = mw.addonManager.addonFromModule(__name__)
+ADDON_PATH = Path(__file__).parents[0]
+
+
 ### Sources:
 ### Oak:
 #  Made by SVG Repo: https://www.svgrepo.com/svg/57942/sprout
