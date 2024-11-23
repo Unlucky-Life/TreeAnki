@@ -6,7 +6,7 @@ REVIEWS_FOR_FULL_TREE = 1000
 
 ADDON_NAME = mw.addonManager.addonFromModule(__name__)
 ADDON_PATH = Path(__file__).parents[0]
-
+SPRITES_PATH = ADDON_PATH / "web" / "iframe" / "trees"
 
 ### Sources:
 ### Oak:
