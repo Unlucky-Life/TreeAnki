@@ -19,8 +19,11 @@ class TreeProgressWidget(QWidget):
         self.update_timer.start(50)
     
     def full_update(self):
-        QMetaObject.invokeMethod(self, "update", Qt.QueuedConnection)
-        self.updatePosition()
+        try:
+            QMetaObject.invokeMethod(self, "update", Qt.QueuedConnection)
+            self.updatePosition()
+        except AttributeError:
+            pass
     
     def updatePosition(self):
         if mw and mw.reviewer and mw.reviewer.bottom:

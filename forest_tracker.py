@@ -45,3 +45,24 @@ class ForestTracker:
             
     def reload_config(self):
         self.config = self.load_config()
+
+    def get_tree_stage(self):
+        # Calculate the current stage based on progress
+        progress = self.config["current_tree"]["progress"]
+        stage_size = REVIEWS_FOR_FULL_TREE / 5
+        stage = min(5, max(1, int(progress / stage_size) + 1))
+        return stage
+    
+    def get_tree_type_number(self):
+        # Get the tree type string from config
+        tree_type = self.config["current_tree"]["type"]
+        
+        # Retrieve list of keys from TREE_TYPES dictionary
+        tree_types_keys = list(TREE_TYPES.keys())
+        
+        try:
+            # Find the index of the tree type within keys and make it 1-based
+            return tree_types_keys.index(tree_type) + 1
+        except ValueError:
+            # Return 0 if the type isn't found
+            return 0
