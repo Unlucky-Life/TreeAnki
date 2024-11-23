@@ -1,6 +1,28 @@
+:root {
+    --window-left: 50px;
+    --window-top: 50px;
+}
+
 #TreeWindow {
-    position: fixed;  /* Changed from 'a' to 'fixed' */
+    /* Changed from 'a' to 'fixed' */
     bottom: 10%;     /* Distance from the bottom of the viewport */
     left: 2%;       /* Distance from the left of the viewport */
     z-index: 1000;    /* Ensures it's on top */
+    border: none;
+    left: var(--window-left);
+    top: var(--window-top);
+}
+
+#Trefame {
+    width: 240px;     /* Distance from the bottom of the viewport */
+    height: 280px;       /* Distance from the left of the viewport */
+}
+
+.draggable {
+    position: absolute;
+    width: 250px;
+    height: 290px;
+    border: 2px solid #444;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    cursor: move;
 }
