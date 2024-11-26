@@ -42,13 +42,13 @@ class ForestOverviewWindow(QMainWindow):
         tree_controls.addWidget(select_button)
         
         # Current tree preview
-        current_tree_label = QLabel("Current Growing Tree:")
-        tree_controls.addWidget(current_tree_label)
-        self.current_tree_widget = TreeProgressWidget()
-        self.current_tree_widget.setFixedSize(100, 150)
-        tree_controls.addWidget(self.current_tree_widget) 
-        tree_controls.addStretch()
-        layout.addLayout(tree_controls)
+        #current_tree_label = QLabel("Current Growing Tree:")
+        #tree_controls.addWidget(current_tree_label)
+        #self.current_tree_widget = TreeProgressWidget()
+        #self.current_tree_widget.setFixedSize(100, 150)
+        #tree_controls.addWidget(self.current_tree_widget) 
+        #tree_controls.addStretch()
+        #layout.addLayout(tree_controls)
         
         # Forest display
         forest_scroll = QScrollArea()
@@ -66,9 +66,9 @@ class ForestOverviewWindow(QMainWindow):
         if dialog.exec():
             selected_tree = dialog.get_selected_tree()
             self.forest_tracker.set_tree_type(selected_tree)
-            self.current_tree_widget.update()
+            #self.current_tree_widget.update()
             self.forest_display.update()
     
     def refresh(self):
-        self.current_tree_widget.update()
+        #self.current_tree_widget.update()
         self.forest_display.update()

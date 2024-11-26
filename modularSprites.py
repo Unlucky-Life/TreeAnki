@@ -1,7 +1,6 @@
 import os
-from .constants import SPRITES_PATH
 
-def count_images_in_folders():
+def retrieve_sprites_info(SPRITES_PATH):
     # Initialize the result dictionary
     folder_image_counts = {}
     parent_folder = SPRITES_PATH  # Or directly use the `parent_folder` variable

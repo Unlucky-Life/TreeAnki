@@ -1,7 +1,7 @@
 {
     "forest": [],
     "current_tree": {
-        "type": "oak",
+        "type": "AppleTree",
         "progress": 0
     },
     "total_reviews": 0

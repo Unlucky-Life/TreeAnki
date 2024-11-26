@@ -32,4 +32,4 @@ class TreeSelectionDialog(QDialog):
         for tree_type, btn in self.tree_buttons.items():
             if btn.isChecked():
                 return tree_type
-        return "oak"  # Default
+        return "AppleTree"  # Default

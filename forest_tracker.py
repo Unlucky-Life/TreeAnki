@@ -1,10 +1,13 @@
 from aqt import mw
 from .constants import REVIEWS_FOR_FULL_TREE
 from .constants import TREE_TYPES
+from .constants import TREE_DATA
+from .utils import get_tree_info_by_key
 
 class ForestTracker:
     def __init__(self):
         self.config = self.load_config()
+        self.tree_data = TREE_DATA
         
     def load_config(self):
         config = mw.addonManager.getConfig(__name__) or {}
@@ -12,7 +15,7 @@ class ForestTracker:
             config = {
                 "forest": [],  # List of completed trees
                 "current_tree": {
-                    "type": "oak",
+                    "type": "AppleTree",
                     "progress": 0
                 },
                 "total_reviews": 0
@@ -49,20 +52,15 @@ class ForestTracker:
     def get_tree_stage(self):
         # Calculate the current stage based on progress
         progress = self.config["current_tree"]["progress"]
-        stage_size = REVIEWS_FOR_FULL_TREE / 5
-        stage = min(5, max(1, int(progress / stage_size) + 1))
+        stage_size = REVIEWS_FOR_FULL_TREE / self.get_tree_info("image_count")
+        stage = min(self.get_tree_info("image_count"), max(1, int(progress / stage_size) + 1))
         return stage
     
-    def get_tree_type_number(self):
+    def get_tree_type(self):
         # Get the tree type string from config
-        tree_type = self.config["current_tree"]["type"]
-        
-        # Retrieve list of keys from TREE_TYPES dictionary
-        tree_types_keys = list(TREE_TYPES.keys())
-        
-        try:
-            # Find the index of the tree type within keys and make it 1-based
-            return tree_types_keys.index(tree_type) + 1
-        except ValueError:
-            # Return 0 if the type isn't found
-            return 0
+        return self.config["current_tree"]["type"]
+    
+    def get_tree_info(self, key):
+        # Get the image type for the current tree
+        tree_type = self.get_tree_type()
+        return get_tree_info_by_key(self.tree_data, tree_type, key)

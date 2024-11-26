@@ -26,15 +26,15 @@
 
     // Get parameters from URL
     const source_url = getQueryParameter("general_url");
-    const treeType = parseInt(getQueryParameter("treeType")) || 1;
-    const stage = Math.min(Math.max(parseInt(getQueryParameter("stage")), 1), 5) || 1;
+    const treeType = getQueryParameter("treeType");
+    const stage = getQueryParameter("stage") || 1;
+    const imageType = getQueryParameter("image_type");
     const current = parseInt(getQueryParameter("current")) || 0;
     const max = parseInt(getQueryParameter("max")) || 100;
 
     // Set image source based on parameters
     const treeContainer = document.getElementById("tree-container");
-    treeContainer.src = `../iframe/trees/AppleTree/${stage}.png`;
-    //properly integrate new system     treeContainer.src = `../iframe/trees/${treeType}/${stage}.png`;
+    treeContainer.src = `../iframe/trees/${treeType}/${stage}.${imageType}`;
 
     // Initialize click counter
     let clickCount = 0;
